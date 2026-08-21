@@ -1,4 +1,4 @@
-import { Layout as DashboardLayout } from "/src/layouts/index.js";
+import { Layout as DashboardLayout } from "../../../../layouts/index.js";
 import { Box, Container, Typography, Button, IconButton, Stack, SvgIcon } from "@mui/material";
 import { Grid } from "@mui/system";
 import { useEffect, useState } from "react";
@@ -187,25 +187,10 @@ const Page = () => {
       <Box
         sx={{
           flexGrow: 1,
-          py: 4,
         }}
       >
         <Container maxWidth={false}>
           <Stack spacing={4}>
-            <Stack direction="row" justifyContent="space-between" alignItems="center">
-              <Button
-                color="inherit"
-                onClick={() => router.back()}
-                startIcon={
-                  <SvgIcon fontSize="small">
-                    <ArrowLeftIcon />
-                  </SvgIcon>
-                }
-              >
-                Back to Templates
-              </Button>
-            </Stack>
-
             <Typography variant="h4" gutterBottom>
               {pageTitle}
             </Typography>
@@ -234,7 +219,7 @@ const Page = () => {
                   type="select"
                   options={[
                     { label: "Block", value: "Tenant" },
-                    { label: "Table", value: "Table" }
+                    { label: "Table", value: "Table" },
                   ]}
                   formControl={formControl}
                 />
@@ -255,7 +240,11 @@ const Page = () => {
           <Grid container spacing={2}>
             {blockCards.map((block, index) => (
               <Grid
-                size={{ md: layoutMode === "Table" ? 12 : 4, sm: layoutMode === "Table" ? 12 : 6, xs: 10 }}
+                size={{
+                  md: layoutMode === "Table" ? 12 : 4,
+                  sm: layoutMode === "Table" ? 12 : 6,
+                  xs: 12,
+                }}
                 key={block.id}
               >
                 <CippButtonCard
@@ -275,14 +264,14 @@ const Page = () => {
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <Grid container spacing={2}>
                       {/* Report Style - Full Width */}
-                      <Grid size={{ xs: 6 }}>
+                      <Grid size={{ xs: 12, sm: 6 }}>
                         <CippFormComponent
                           label="Card Name"
                           name={`Fields.${index}.FrontendFields.0.name`} // Corrected index
                           formControl={formControl}
                         />
                       </Grid>
-                      <Grid size={{ xs: 6 }}>
+                      <Grid size={{ xs: 12, sm: 6 }}>
                         <CippFormComponent
                           label="Card Description"
                           name={`Fields.${index}.FrontendFields.0.desc`} // Corrected index

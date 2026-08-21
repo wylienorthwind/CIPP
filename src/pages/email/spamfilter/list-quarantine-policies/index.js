@@ -1,8 +1,8 @@
-import { Layout as DashboardLayout } from "/src/layouts/index.js";
-import { CippTablePage } from "/src/components/CippComponents/CippTablePage.jsx";
-import CippButtonCard from "/src/components/CippCards/CippButtonCard";
-import { CippInfoBar } from "/src/components/CippCards/CippInfoBar";
-import { CippApiDialog } from "/src/components/CippComponents/CippApiDialog.jsx";
+import { Layout as DashboardLayout } from "../../../../layouts/index.js";
+import { CippTablePage } from "../../../../components/CippComponents/CippTablePage.jsx";
+import CippButtonCard from "../../../../components/CippCards/CippButtonCard";
+import { CippInfoBar } from "../../../../components/CippCards/CippInfoBar";
+import { CippApiDialog } from "../../../../components/CippComponents/CippApiDialog.jsx";
 import { Alert, Typography, Stack, Tooltip, IconButton, SvgIcon, Button } from "@mui/material";
 import { Grid } from "@mui/system";
 import Link from "next/link";
@@ -16,9 +16,9 @@ import {
   Edit,
   Delete,
 } from "@mui/icons-material";
-import { useSettings } from "/src/hooks/use-settings";
-import { useDialog } from "/src/hooks/use-dialog";
-import { ApiGetCall } from "/src/api/ApiCall";
+import { useSettings } from "../../../../hooks/use-settings";
+import { useDialog } from "../../../../hooks/use-dialog";
+import { ApiGetCall } from "../../../../api/ApiCall";
 
 const Page = () => {
   const pageTitle = "Quarantine Policies";
@@ -89,26 +89,28 @@ const Page = () => {
         Edit Settings
       </Button>
       <Tooltip title="Refresh Data">
-        <IconButton
-          className="MuiIconButton"
-          disabled={GlobalQuarantinePolicy?.isLoading || GlobalQuarantinePolicy?.isFetching}
-          onClick={() => {
-            GlobalQuarantinePolicy.refetch();
-          }}
-        >
-          <SvgIcon
-            fontSize="small"
-            sx={{
-              animation: GlobalQuarantinePolicy?.isFetching ? "spin 1s linear infinite" : "none",
-              "@keyframes spin": {
-                "0%": { transform: "rotate(0deg)" },
-                "100%": { transform: "rotate(360deg)" },
-              },
+        <span>
+          <IconButton
+            className="MuiIconButton"
+            disabled={GlobalQuarantinePolicy?.isLoading || GlobalQuarantinePolicy?.isFetching}
+            onClick={() => {
+              GlobalQuarantinePolicy.refetch();
             }}
           >
-            <Sync />
-          </SvgIcon>
-        </IconButton>
+            <SvgIcon
+              fontSize="small"
+              sx={{
+                animation: GlobalQuarantinePolicy?.isFetching ? "spin 1s linear infinite" : "none",
+                "@keyframes spin": {
+                  "0%": { transform: "rotate(0deg)" },
+                  "100%": { transform: "rotate(360deg)" },
+                },
+              }}
+            >
+              <Sync />
+            </SvgIcon>
+          </IconButton>
+        </span>
       </Tooltip>
     </>,
   ];
@@ -328,7 +330,7 @@ const Page = () => {
 
   return (
     <>
-      <Stack spacing={2} sx={{ p: 3, mt: 1 }}>
+      <Stack spacing={2} sx={{ px: 3, pb: 3, mt: 1 }}>
         <CippButtonCard
           component="card"
           title={`Global Quarantine Settings - ${currentTenant}`}

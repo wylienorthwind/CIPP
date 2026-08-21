@@ -1,4 +1,4 @@
-import { Layout as DashboardLayout } from "/src/layouts/index.js";
+import { Layout as DashboardLayout } from "../../../../layouts/index.js";
 import { useForm, useWatch } from "react-hook-form";
 import CippFormComponent from "../../../../components/CippComponents/CippFormComponent";
 import { Grid } from "@mui/system";
@@ -6,6 +6,7 @@ import CippPageCard from "../../../../components/CippCards/CippPageCard";
 import { ApiGetCall, ApiPostCall } from "../../../../api/ApiCall";
 import { CippDataTable } from "../../../../components/CippTable/CippDataTable";
 import { CippApiResults } from "../../../../components/CippComponents/CippApiResults";
+import { CippExpandableAlert } from "../../../../components/CippComponents/CippExpandableAlert";
 import {
   Accordion,
   AccordionDetails,
@@ -81,8 +82,8 @@ const Page = () => {
     if (addInvites?.data?.length > 0) {
       setInviteData((prevData) => {
         const newData = addInvites.data.map((invite) => ({
-          ...invite.data.Invite,
-          Message: invite.data.Message,
+          ...invite.Invite,
+          Message: invite.Message,
         }));
         const mergedData = [...prevData, ...newData];
         const deduplicatedData = mergedData.filter(
@@ -99,7 +100,7 @@ const Page = () => {
         <CardContent sx={{ mb: 2 }}>
           <Grid container spacing={2}>
             <Grid size={12}>
-              <Alert severity="info">
+              <CippExpandableAlert severity="info">
                 <Typography variant="body2">
                   Use this form to generate invites for the selected GDAP Role Template. After
                   generating the invite, you will receive two URLs:
@@ -118,11 +119,11 @@ const Page = () => {
                   The onboarding process will also run on a nightly schedule. For automated
                   onboardings, please check out{" "}
                   <Link component={NextLink} href="/cipp/settings/partner-webhooks">
-                    Partner Webhooks
+                    Automated Onboarding
                   </Link>{" "}
                   in Application Settings.
                 </Typography>
-              </Alert>
+              </CippExpandableAlert>
             </Grid>
             {createDefaults && (
               <>

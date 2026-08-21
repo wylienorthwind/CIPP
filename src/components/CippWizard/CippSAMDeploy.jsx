@@ -92,11 +92,23 @@ export const CippSAMDeploy = (props) => {
             here
           </Link>
         </li>
-        <li>(Temporary) Global Administrator permissions for the CIPP Service Account</li>
+        <li>
+          An account with at minimum: <li>Application Administrator</li>
+          <li>User Administrator</li>
+        </li>
         <li>
           Multi-factor authentication enabled for the CIPP Service Account, with no trusted
           locations or other exclusions.
         </li>
+        <li>
+          Device code sign-in permitted in your partner tenant. Security defaults and Conditional
+          Access authentication flow policies can block it, which will stop this step from
+          completing.
+        </li>
+      </Alert>
+      <Alert severity="info">
+        This step only creates the CIPP-SAM application registration. The token CIPP runs on is
+        created by the sign-in on the next step.
       </Alert>
 
       {authStatus.error && (
